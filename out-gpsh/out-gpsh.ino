@@ -65,15 +65,6 @@ void setup()    //初始化内容
 }
 
 void loop(){
-//GPS
-  gpsRead();       //获取GPS数据
-  parseGpsBuffer();//解析GPS数据
-  printGpsBuffer();//输出解析后的数据
- // String NS=Save_Data.N_S;
-  String NN=Save_Data.latitude;
- // String EW=Save_Data.E_W;
-  String EE=Save_Data.longitude;
-  String times=String(int(Save_Data.UTCTime)+80000);
 //ADXL345
   int x,y,z; 
   adxl.readAccel(&x, &y, &z); 
@@ -87,6 +78,15 @@ if(adxl.triggered(interrupts, ADXL345_ACTIVITY)){
     Serial.print(y);
     Serial.print(", ");
     Serial.println(z); 
+//GPS
+  gpsRead();       //获取GPS数据
+  parseGpsBuffer();//解析GPS数据
+  printGpsBuffer();//输出解析后的数据
+//String NS=Save_Data.N_S;
+  String NN=Save_Data.latitude;
+//String EW=Save_Data.E_W;
+  String EE=Save_Data.longitude;
+  String times=String(int(Save_Data.UTCTime)+80000);
   //String msg=NS+NN+EW+EE+times+car; 
     String msg=NN+EE+times+car; 
     Serial.print("msg="); 
